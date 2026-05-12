@@ -9,7 +9,7 @@ import sys
 from constants import (
     TANK_BASIC, TANK_FAST, TANK_ARMOR, TANK_BOSS,
 )
-from map_generator import generate_map, _fallback_map
+from map_generator import _fallback_map
 from engine import GameEngine
 
 
@@ -38,10 +38,6 @@ def main():
         description="Battle City AI  –  AL2002 Spring 2026"
     )
     parser.add_argument(
-        '--map', choices=['random', 'fixed'], default='random',
-        help="Map generation mode (default: random CSP map)"
-    )
-    parser.add_argument(
         '--level', type=int, choices=range(1, 4), default=1, metavar='1-3',
         help="Difficulty level 1-3 (default: 1)"
     )
@@ -51,21 +47,15 @@ def main():
     )
     parser.add_argument(
         '--seed', type=int, default=None,
-        help="Random seed for reproducible CSP map generation"
+        help="Reserved for compatibility; fixed map does not use a seed"
     )
     args = parser.parse_args()
 
     # ── Generate map ──────────────────────────────────────────────────────────
-    print(f"[Battle City AI]  map={args.map}  level={args.level}"
-          f"  benchmark={args.benchmark}  seed={args.seed}")
-
-    if args.map == 'fixed':
-        grid = _fallback_map()
-        print("  Using hand-crafted fallback map.")
-    else:
-        print("  Running CSP map generator …", end='', flush=True)
-        grid = generate_map(seed=args.seed)
-        print(" done.")
+    print(f"[Battle City AI]  map=fixed  level={args.level}"
+          f"  benchmark={args.benchmark}")
+    grid = _fallback_map()
+    print("  Using hand-crafted fixed map.")
 
     # ── Build enemy queue ─────────────────────────────────────────────────────
     enemy_queue = build_enemy_queue(args.level, args.benchmark)

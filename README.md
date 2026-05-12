@@ -45,11 +45,10 @@ pip install pygame numpy
 ### Running the Game
 
 ```bash
-# Start at Level 1 with random map
+# Start at Level 1 with the fixed map
 python main.py
 
 # Advanced options
-python main.py --level 2 --map random
 python main.py --level 3 --benchmark  # Boss level with Minimax logging
 ```
 
@@ -58,7 +57,6 @@ python main.py --level 3 --benchmark  # Boss level with Minimax logging
 | Flag | Options | Description |
 |------|---------|-------------|
 | `--level` | 1, 2, 3 | Difficulty level (default: 1) |
-| `--map` | random, fixed | Map generation mode (default: random) |
 | `--benchmark` | - | Enable Minimax benchmarking and CSV logging |
 
 ---

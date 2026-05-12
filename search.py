@@ -405,10 +405,17 @@ def _evaluate(state: MinimaxState, grid: list) -> float:
 
     br, bc = state.boss_pos
     pr, pc = state.player_pos
+    er, ec = state.eagle_pos
+
+    # Continuous progress incentives so the boss keeps closing distance
+    # instead of hovering on locally equivalent edge states.
+    player_dist = _manhattan(state.boss_pos, state.player_pos)
+    eagle_dist = _manhattan(state.boss_pos, state.eagle_pos)
+    score -= player_dist * 5.0
+    score -= eagle_dist * 2.0
 
     # Player within 3 tiles: +60
-    dist = _manhattan(state.boss_pos, state.player_pos)
-    if dist <= 3:
+    if player_dist <= 3:
         score += 60.0
 
     # Player in line-of-sight (same row or column): +50
@@ -551,4 +558,4 @@ def minimax(state: MinimaxState, grid: list,
 
         logger.record(tick, depth, ab_counter[0], estimated_full, elapsed_ms)
 
-    return best_action if best_action != IDLE else MOVE_DOWN
+    return best_action

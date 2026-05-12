@@ -534,7 +534,7 @@ class BossTank(Agent):
         # Throttle shooting
         if action == SHOOT:
             if self._shoot_cooldown > 0:
-                action = MOVE_DOWN   # fallback move
+                action = IDLE
             else:
                 self._shoot_cooldown = 45
 

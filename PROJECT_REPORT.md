@@ -212,9 +212,9 @@ BossTank uses adaptive depth based on available time, choosing deeper searches w
 
 **Gameplay Balance**: As players progress through levels, they encounter increasingly sophisticated AI without frustrating difficulty spikes.
 
-### 3.2 Map Generation (CSP)
+### 3.2 Fixed Map Layout
 
-**Problem**: A fixed map is boring; a completely random map might be unplayable.
+**Problem**: The game needs a reliable, reproducible map for testing and demonstrations.
 
 **Solution**: Constraint Satisfaction Problem approach
 ```
@@ -471,7 +471,7 @@ Battle City AI is proof that good algorithm selection doesn't just optimize code
 
 ### Quick Start
 ```bash
-python main.py --map random --level 1
+python main.py --level 1
 ```
 
 ### Benchmark Mode (Minimax Testing)
